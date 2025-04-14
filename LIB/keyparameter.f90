@@ -11,7 +11,7 @@ MODULE keyparameter
   INTEGER, PARAMETER :: mxring=4   ! maximum rings allowed
   INTEGER, PARAMETER :: mxcp=99    ! maximum # of copies of formula allowed & max # of "tracks" 
   INTEGER, PARAMETER :: mxhyd=10   ! maximum # of distinct position to add H2O (i.e. # of carbonyls)
-  INTEGER, PARAMETER :: mxhiso=700 ! maximum # of hydrate isomer a molecule can have
+  INTEGER, PARAMETER :: mxhiso=5000 ! maximum # of hydrate isomer a molecule can have
   INTEGER, PARAMETER :: mxpd=38    ! maximum # of products per reaction
   INTEGER, PARAMETER :: mxnr=35    ! maximum # of reactions per species
   INTEGER, PARAMETER :: mxcopd=10  ! maximum # of coproducts per generated species

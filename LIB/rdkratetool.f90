@@ -136,7 +136,7 @@ SUBROUTINE rdratedb(filename,ndat,oxchem,k298,arrh,oxcom)
 
 ! read arrhenius coefficients
     DO i=1,3
-      READ(line(ipc(i+1)+1:),*,IOSTAT=ierr) tparrh(ndat,i)
+      READ(line(ipc(i+1)+1:ipc(i+2)-1),*,IOSTAT=ierr) tparrh(ndat,i)
       IF (ierr/=0) THEN
         WRITE(6,*) '--error--, while reading file: ',TRIM(filename)
         WRITE(6,*) 'while reading rate coef. at: ', line(ipc(i+1)+1:ipc(i+2)-1)
@@ -151,7 +151,7 @@ SUBROUTINE rdratedb(filename,ndat,oxchem,k298,arrh,oxcom)
       n2=INDEX(tpcom,';')
       IF (n2/=0) tpcom(n2:)='           '  ! remove string not part of comment
       IF (tpcom(1:1)==' ') CYCLE           ! nothing to read
-      READ(line(ipc(i+4)+1:),*,IOSTAT=ierr) tpoxcom(ndat,i)
+      READ(tpcom,*,IOSTAT=ierr) tpoxcom(ndat,i)
       IF (ierr/=0) THEN
         WRITE(6,*) '--error--, while reading file: ',TRIM(filename)
         WRITE(6,*) 'while reading comment (code): ', tpcom

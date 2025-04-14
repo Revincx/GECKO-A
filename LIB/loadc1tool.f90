@@ -42,7 +42,7 @@ SUBROUTINE loadc1mch()
   CALL rddict(filename,ninorg,iname,ichem,ifgrp,nrec,oname,ochem,ofgrp)
 
   IF (pamfg) THEN
-    filename="../DATA/dic_OFR.dat"
+    filename=TRIM(dirgecko)//"DATA/dic_OFR.dat"
     CALL rddict(filename,ninorg,iname,ichem,ifgrp,nrec,oname,ochem,ofgrp)
   ENDIF
 
@@ -70,7 +70,7 @@ SUBROUTINE loadc1mch()
 ! read the mechanisms
 ! ------------------- 
   WRITE (6,*) '  ...reading inorganic reactions'
-  filename='../DATA/mch_inorg.dat'
+  filename=TRIM(dirgecko)//"DATA/mch_inorg.dat"
   CALL rdfixmch(filename)
 
   IF (pamfg) THEN
@@ -79,7 +79,7 @@ SUBROUTINE loadc1mch()
   ENDIF   
   
   WRITE (6,*) '  ...reading CH4 chemistry'
-  filename='../DATA/mch_singlec.dat'
+  filename=TRIM(dirgecko)//"DATA/mch_singlec.dat"
   CALL rdfixmch(filename)
 
 ! write CH3O2+counters reactions

@@ -130,10 +130,10 @@ SUBROUTINE rddatabase(filename,ncol,ndat,chemframe,dataframe,comframe)
 
 ! read dataframe coefficients
     DO i=1,ncol
-      READ(line(ipc(i)+1:),*,IOSTAT=ierr) tpdataframe(ndat,i)
+      READ(line(ipc(i)+1:ipc(i+1)-1),*,IOSTAT=ierr) tpdataframe(ndat,i)
       IF (ierr/=0) THEN
         WRITE(6,*) '--error--, while reading file: ',TRIM(filename)
-        WRITE(6,*) 'while reading rate coef. at: ', line(ipc(i+1)+1:ipc(i+2)-1)
+        WRITE(6,*) 'while reading rate coef. at: ', line(ipc(i)+1:ipc(i+1)-1)
         WRITE(6,*) 'at line number: ',ilin
         STOP "in rddatabase" 
       ENDIF
@@ -145,7 +145,7 @@ SUBROUTINE rddatabase(filename,ncol,ndat,chemframe,dataframe,comframe)
       n2=INDEX(tpcom,';')
       IF (n2/=0) tpcom(n2:)='           '  ! remove string not part of comment
       IF (tpcom(1:1)==' ') CYCLE           ! nothing to read
-      READ(line(ipc(i+ncol)+1:),*,IOSTAT=ierr) tpcomframe(ndat,i)
+      READ(tpcom,*,IOSTAT=ierr) tpcomframe(ndat,i)
       IF (ierr/=0) THEN
         WRITE(6,*) '--error--, while reading file: ',TRIM(filename)
         WRITE(6,*) 'while reading comment (code): ', tpcom
