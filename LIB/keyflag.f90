@@ -50,6 +50,9 @@ MODULE keyflag
   LOGICAL :: wrthenry                      ! write output file with the Henry's law coefs
   LOGICAL :: wrtref                        ! write the references for the reactions in the mechanism
   LOGICAL :: wrttg                         ! write output file with Tg data
+  LOGICAL :: wrtdepo                       ! write output file with data for deposition
+  LOGICAL :: wrtkivoci                     ! write output file with kivoci and kjvocj
+  LOGICAL :: wrtmaxyield                   ! write output file with maximum yields
 
 END MODULE keyflag
 !-----------------------------------
@@ -65,8 +68,8 @@ SUBROUTINE define_defaults
                      g2pfg,g2wfg,isomerfg,highnoxfg,dhffg,chafg, &
                      enolflg,pamfg,bimolecrx4criegee,rx_ro2_oh,  &
                      pvap_sar,kisom_sar,kdiss_sar,kohadd_sar, &
-                     wrtsarinfo,screenfg,wrtdhf,wrtpvap, & 
-                     wrthenry,wrtref,wrttg,sar_only_fg
+                     wrtsarinfo,screenfg,wrtdhf,wrtpvap,wrtmaxyield, & 
+                     wrthenry,wrtref,wrttg,wrtdepo,wrtkivoci,sar_only_fg
 
 IMPLICIT NONE
 
@@ -117,6 +120,8 @@ IMPLICIT NONE
     wrthenry   = .TRUE.      ! write output file with the Henry's law coefs
     wrtref     = .TRUE.      ! write the references for the reactions in the mechanism
     wrttg      = .TRUE.      ! write output file with Tg data
-
+    wrtdepo    = .FALSE.     ! write output file with data fo deposition
+    wrtkivoci  = .FALSE.     ! write output file with kivoci and kjvocj
+    wrtmaxyield= .FALSE.     ! write output file with maximum yields
 
 END SUBROUTINE define_defaults

@@ -15,8 +15,9 @@ PROGRAM main
                          logu,mecu,scru,kohu,kno3u,waru,gasu,prtu,walu,&
                          tfu1,ohu,no3u,o3u,dhfu,saru,refu,prmu,rszu
   USE keyflag,    ONLY: critvp,g2pfg,g2wfg, &
-                        dhffg,rx_ro2_no2,wrtsarinfo,sar_only_fg, &
-                        wrtref,wrtdhf,wrtpvap,wrthenry,wrttg
+                        dhffg,rx_ro2_no2,wrtsarinfo,sar_only_fg,pvap_sar, &
+                        wrtref,wrtdhf,wrtpvap,wrthenry,wrttg,wrtdepo, &
+                        wrtkivoci,wrtmaxyield
   USE rjtool,     ONLY: rjgrm
   USE stdgrbond,  ONLY: grbond
   USE searching,  ONLY: srch
@@ -93,8 +94,13 @@ PROGRAM main
   OPEN(logu,FILE=TRIM(dirout)//'scheme.log')  ;  CALL wrtlog() ! operating conditions and flags
   OPEN(prmu,FILE=TRIM(dirout)//'listprimary.dat')
   OPEN(scru,FILE=TRIM(dirout)//'screeninfo.out')               !
-  OPEN(kohu,FILE=TRIM(dirout)//'kivoci.dat')                   !
-  OPEN(kno3u,FILE=TRIM(dirout)//'kjvocj.dat')                  !
+  IF (wrtkivoci) THEN
+    OPEN(kohu,FILE=TRIM(dirout)//'kivoci.dat')                   !
+    OPEN(kno3u,FILE=TRIM(dirout)//'kjvocj.dat')                  !
+  ELSE
+    OPEN(kohu,FILE='/dev/null')                   !
+    OPEN(kno3u,FILE='/dev/null')                  !
+  ENDIF
   OPEN(waru,FILE=TRIM(dirout)//'warning.out')                  !
   OPEN(mecu,FILE=TRIM(dirout)//'reactions.dum')                !
   IF (wrtref) OPEN(refu,FILE=TRIM(dirout)//'reactionswithcom.dum')         !
@@ -343,8 +349,10 @@ PROGRAM main
   WRITE(gasu,'(a)') "PHASE: END GAS"  ;  CLOSE(gasu) 
       
 ! write max yield for each species in the mechanism
-  PRINT*, '... write max yields'
-  CALL wrt_mxyield()
+  IF (wrtmaxyield) THEN
+    PRINT*, '... write max yields'
+    CALL wrt_mxyield()
+  ENDIF
 
 ! write peroxy species in counting files
   CALL wrt_ro2()
@@ -363,13 +371,21 @@ PROGRAM main
 ! write the vapor pressure of the species in dict.
   IF (wrtpvap) THEN
     PRINT*, '... compute data for Psat evaluation'
-    CALL wrt_psat(1,1,1)
+    IF      (pvap_sar==1) THEN ; CALL wrt_psat(1,0,0)
+    ELSE IF (pvap_sar==2) THEN ; CALL wrt_psat(0,1,0)
+    ELSE IF (pvap_sar==3) THEN ; CALL wrt_psat(0,0,1)
+    ENDIF
   ENDIF
 
-! write Henry's law coef. and deposition parameters for species in dict.
+! write Henry's law coef. for species in dict.
   IF (wrthenry) THEN
     PRINT*, '... compute data for Henry parameters'
     CALL wrt_henry()
+  ENDIF
+
+! write deposition parameters for species in dict.
+  IF (wrtdepo) THEN
+    PRINT*, '... compute data for Deposition'
     CALL wrt_depo()
   ENDIF
 

@@ -22,3 +22,12 @@ This is the compilation directory. Type *make clean* to clean the folder and the
 ##### RUN
 
 This the directory where you run the model using gecko.sh script. Results are in OUT folder.
+
+
+### Compile the code
+In the OBJ folder, clean the previous compilation if needed with *make clean*, and compile the code with *make*.
+
+### Run the code
+To configure the mechanism, edit *gecko.nml* and *cheminput.dat* in INPUT. Then go in the RUN directory and run *gecko.sh*
+
+
