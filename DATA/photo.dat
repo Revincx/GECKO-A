@@ -64,7 +64,6 @@ CHOCHO                        | 5200  | CHO.                          | CHO.    
 CHOCHO                        | 5300  | CH2O                          | CO                   | -   ; DUM1JDAT ; 
 CH3COCHO                      | 5400  | CHO.                          | CH3CO.               | -   ; DUM1JDAT ; 
 CH3COCHO                      | 5500  | CO                            | CH3CHO               | -   ; DUM1JDAT ; 
-CH3COCHO                      | 5500  | CO                            | CH3CHO               | -   ; DUM1JDAT ; 
 CH3COCHO                      | 5600  | CO                            | CO                   | CH4 ; DUM1JDAT ; 
 CH3COCOCH3                    | 5700  | CH3CO.                        | CH3CO.               | -   ; DUM1JDAT ; 
 CHOCdH=CdHCdH=CdHCHO          | 5800  | CHO.                          | CdH.=CdHCdH=CdHCHO   | -   ; DUM1JDAT ; 
