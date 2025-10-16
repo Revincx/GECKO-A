@@ -19,6 +19,8 @@ SRCS = $(SRCDIR)/keyparameter.c \
        $(SRCDIR)/tempoci.c \
        $(SRCDIR)/references.c \
        $(SRCDIR)/tempflag.c \
+       $(SRCDIR)/sortstring.c \
+       $(SRCDIR)/toolbox.c \
        $(SRCDIR)/main.c
 
 # Object files
@@ -30,7 +32,9 @@ HEADERS = $(SRCDIR)/keyparameter.h \
           $(SRCDIR)/minidict.h \
           $(SRCDIR)/tempoci.h \
           $(SRCDIR)/references.h \
-          $(SRCDIR)/tempflag.h
+          $(SRCDIR)/tempflag.h \
+          $(SRCDIR)/sortstring.h \
+          $(SRCDIR)/toolbox.h
 
 # Default target
 all: $(TARGET)
@@ -48,8 +52,15 @@ clean:
 	rm -f $(OBJDIR)/*.o $(TARGET)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean python clean-python
 
-# Test compilation of modules (no linking)
-test-compile: $(OBJS)
-	@echo "All modules compiled successfully"
+# Build Python extension
+python:
+	@echo "Building Python extension module..."
+	cd ../python && python3 setup.py build_ext --inplace
+	@echo "Python module built successfully"
+	@echo "Test with: cd ../python && python3 -c 'import geckoa; print(geckoa.get_config())'"
+
+# Clean Python build artifacts
+clean-python:
+	cd ../python && rm -rf build *.so *.pyc __pycache__

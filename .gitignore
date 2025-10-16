@@ -12,4 +12,6 @@ RUN/SCRIPTS/scheme.new
 *.a
 *.pyc
 __pycache__/
+python/build/
+python/*.so
 

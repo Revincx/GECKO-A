@@ -6,7 +6,7 @@ char dirgecko[512] = "";
 char dirout[512] = "";
 
 /* digit (to rate groups and ring joining char) */
-const char digit[4] = {'1', '2', '3', '4'};
+const char gecko_digit[4] = {'1', '2', '3', '4'};
 
 /* prime numbers */
 const int prim[35] = {

@@ -62,7 +62,7 @@ extern char dirgecko[512];
 extern char dirout[512];
 
 /* digit (to rate groups and ring joining char) */
-extern const char digit[4];
+extern const char gecko_digit[4];
 
 /* priorities to rate/sort functionalities in groups */
 #define PRI "CHOCHC CH(CH2 CH3O.)OO. OOH ONOF  Br2Br)Cl2Cl)NO2NO)OH)"
