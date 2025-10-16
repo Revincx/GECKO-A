@@ -26,6 +26,7 @@ SRCS = $(SRCDIR)/keyparameter.c \
        $(SRCDIR)/searching.c \
        $(SRCDIR)/primetool.c \
        $(SRCDIR)/rjtool.c \
+       $(SRCDIR)/atomtool.c \
        $(SRCDIR)/main.c
 
 # Object files
@@ -44,7 +45,8 @@ HEADERS = $(SRCDIR)/keyparameter.h \
           $(SRCDIR)/database.h \
           $(SRCDIR)/searching.h \
           $(SRCDIR)/primetool.h \
-          $(SRCDIR)/rjtool.h
+          $(SRCDIR)/rjtool.h \
+          $(SRCDIR)/atomtool.h
 
 # Default target
 all: $(TARGET)
