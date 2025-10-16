@@ -21,6 +21,11 @@ SRCS = $(SRCDIR)/keyparameter.c \
        $(SRCDIR)/tempflag.c \
        $(SRCDIR)/sortstring.c \
        $(SRCDIR)/toolbox.c \
+       $(SRCDIR)/dictstackdb.c \
+       $(SRCDIR)/database.c \
+       $(SRCDIR)/searching.c \
+       $(SRCDIR)/primetool.c \
+       $(SRCDIR)/rjtool.c \
        $(SRCDIR)/main.c
 
 # Object files
@@ -34,7 +39,12 @@ HEADERS = $(SRCDIR)/keyparameter.h \
           $(SRCDIR)/references.h \
           $(SRCDIR)/tempflag.h \
           $(SRCDIR)/sortstring.h \
-          $(SRCDIR)/toolbox.h
+          $(SRCDIR)/toolbox.h \
+          $(SRCDIR)/dictstackdb.h \
+          $(SRCDIR)/database.h \
+          $(SRCDIR)/searching.h \
+          $(SRCDIR)/primetool.h \
+          $(SRCDIR)/rjtool.h
 
 # Default target
 all: $(TARGET)
