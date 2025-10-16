@@ -15,7 +15,11 @@ TARGET = cm
 # Source files (starting with converted modules)
 SRCS = $(SRCDIR)/keyparameter.c \
        $(SRCDIR)/keyflag.c \
-       $(SRCDIR)/minidict.c
+       $(SRCDIR)/minidict.c \
+       $(SRCDIR)/tempoci.c \
+       $(SRCDIR)/references.c \
+       $(SRCDIR)/tempflag.c \
+       $(SRCDIR)/main.c
 
 # Object files
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
@@ -23,7 +27,10 @@ OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 # Header files
 HEADERS = $(SRCDIR)/keyparameter.h \
           $(SRCDIR)/keyflag.h \
-          $(SRCDIR)/minidict.h
+          $(SRCDIR)/minidict.h \
+          $(SRCDIR)/tempoci.h \
+          $(SRCDIR)/references.h \
+          $(SRCDIR)/tempflag.h
 
 # Default target
 all: $(TARGET)
