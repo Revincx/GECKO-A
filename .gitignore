@@ -8,4 +8,8 @@ cm
 RUN/OUT/*
 RUN/SCRIPTS/scheme.new
 !RUN/OUT/.gitkeep
+*.so
+*.a
+*.pyc
+__pycache__/
 
