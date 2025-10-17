@@ -6,6 +6,8 @@
 *.old
 cm
 *.so
+__pycache__/
+*.pyc
 RUN/OUT/*
 RUN/SCRIPTS/scheme.new
 !RUN/OUT/.gitkeep
