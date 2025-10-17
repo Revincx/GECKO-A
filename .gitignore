@@ -5,6 +5,7 @@
 *.bak
 *.old
 cm
+*.so
 RUN/OUT/*
 RUN/SCRIPTS/scheme.new
 !RUN/OUT/.gitkeep

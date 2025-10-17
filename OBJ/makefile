@@ -42,7 +42,7 @@ MODULE = keyparameter.mod keyflag.mod rdnml.mod minidict.mod \
          no3addtool.mod no3abstool.mod no3chem.mod \
          o3addtool.mod poztool.mod criegeetool.mod hotcriegeechem.mod stbcriegeechem.mod o3chem.mod \
          tempo.mod rooohchem.mod ro2tool.mod panchem.mod ro2chem.mod rco3tool.mod rco3chem.mod stuff4hvdiss2.mod \
-         dhftool.mod logtool.mod maintool.mod 
+         dhftool.mod logtool.mod maintool.mod gecko_wrapper.mod 
          
   
 OBJS = rdfixnam.o \
@@ -130,5 +130,6 @@ shared: $(MODULE) $(OBJS)
 		o3addtool.o poztool.o criegeetool.o hotcriegeechem.o stbcriegeechem.o o3chem.o \
 		ro2tool.o panchem.o tempo.o rooohchem.o ro2chem.o rco3tool.o rco3chem.o \
 		stuff4hvdiss2.o switchisomer.o namingtool.o dhftool.o logtool.o maintool.o \
+		gecko_wrapper.o \
 		-o libgecko.so
 	@echo "Shared library libgecko.so created successfully"
