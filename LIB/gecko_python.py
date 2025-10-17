@@ -162,6 +162,11 @@ gecko_get_dirout = libgecko.gecko_get_dirout
 gecko_get_dirout.argtypes = [ctypes.c_char_p, ctypes.c_int]
 gecko_get_dirout.restype = None
 
+# Run simple processing
+gecko_run_simple = libgecko.gecko_run_simple
+gecko_run_simple.argtypes = []
+gecko_run_simple.restype = None
+
 
 # High-level Python interface
 class GeckoA:
@@ -339,3 +344,7 @@ class GeckoA:
         dirout_bytes = bytearray(256)
         gecko_get_dirout(ctypes.c_char_p(bytes(dirout_bytes)), len(dirout_bytes))
         return dirout_bytes.decode('utf-8').rstrip('\x00 ')
+    
+    def run_simple(self):
+        """Run simplified processing (write outputs without full chemistry loop)"""
+        gecko_run_simple()

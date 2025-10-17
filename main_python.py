@@ -129,16 +129,9 @@ def main():
     print("Writing dictionary...")
     gecko.write_dictionary()
     
-    # Write peroxy species
-    gecko.write_ro2()
-    
-    # Write mass transport equations
-    print("Writing mass transfer equations (if any)...")
-    # Note: This checks flags internally
-    gecko.change_phase()
-    
-    # Write mechanism size information
-    gecko.write_size()
+    # Run simplified output generation
+    # This writes dictionaries, peroxy species, mass transport, and size info
+    gecko.run_simple()
     
     print()
     print("=" * 70)

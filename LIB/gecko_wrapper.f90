@@ -308,4 +308,47 @@ SUBROUTINE c_get_dirout(dirout_out, dirout_len) BIND(C, name="gecko_get_dirout")
   dirout_out(MIN(dirout_len, dlen+1)) = C_NULL_CHAR
 END SUBROUTINE c_get_dirout
 
+!=======================================================================
+! Main processing loop - simplified version for demonstration
+! This performs basic initialization and setup but does not run
+! the full chemistry processing which requires extensive internal access
+!=======================================================================
+SUBROUTINE c_run_simple() BIND(C, name="gecko_run_simple")
+  USE keyparameter
+  USE keyflag
+  USE dictstackdb
+  USE outtool, ONLY: wrt_dict, wrt_ro2, wrt_size
+  USE masstranstool, ONLY: changephase
+  
+  IMPLICIT NONE
+  
+  ! Write dictionaries
+  PRINT*, '... write dictionary'
+  OPEN(gasu,FILE=TRIM(dirout)//'gasspe.dum')  
+  WRITE(gasu,'(a)') "SPECIES"  
+  WRITE(gasu,'(a)') "PHASE: START GAS"
+  CALL wrt_dict()
+  WRITE(gasu,'(a)') "PHASE: END GAS"  
+  CLOSE(gasu) 
+  
+  ! Write peroxy species
+  CALL wrt_ro2()
+  
+  ! Write mass transport equations
+  PRINT*, '... write mass transfer equation (if any)'
+  OPEN(prtu,FILE=TRIM(dirout)//'partspe.dum')
+  WRITE(prtu,'(a)') "PHASE: START PART."
+  OPEN(walu,FILE=TRIM(dirout)//'wallspe.dum')
+  WRITE(walu,'(a)') "PHASE: START WALL"
+  IF (g2pfg .OR. g2wfg) CALL changephase()
+  WRITE(prtu,'(a)') "PHASE: END PART."
+  CLOSE(prtu)
+  WRITE(walu,'(a)') "PHASE: END WALL"
+  CLOSE(walu)
+  
+  ! Write mechanism size
+  CALL wrt_size()
+  
+END SUBROUTINE c_run_simple
+
 END MODULE gecko_wrapper
